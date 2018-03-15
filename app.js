@@ -8,9 +8,10 @@ var flagTitleAnswer = {};
 var answers = document.querySelectorAll('.flag img');
 var lifes = document.querySelectorAll('.lives img');
 var addscore = document.querySelector('.score');
+var timer = 20;
+
 
 var functionTime = function() {
-  var timer = 20;
   var interval = setInterval(function() {
     var textTimer = mainScreen.querySelector('.time');
     timer--;
@@ -20,17 +21,17 @@ var functionTime = function() {
       gameOver.style.display = 'block';
     };
   }, 1000);
-}
+}  // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
 
 
-var functionRestart = function() {
+var functionRestart = function() {             // FONCTION POUR RESTART LA PARTIE EN CAS D'ECHEC
   restartBtn.addEventListener('click', function() {
-    gameOver.style.display = 'none';
-    startScreen.style.display = 'block';
+    gameOver.style.display = '';
+    startScreen.style.display = 'flex';
   })
 }
 
-var functionStart = function() {
+var functionStart = function() {            // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
     functionTime();
@@ -40,36 +41,45 @@ var functionStart = function() {
   });
 }
 
-var initilizeGame = function() {
-  flagTitleAnswer = flags[Math.floor(Math.random() * 102)];
-  flagTitle.innerHTML  = flagTitleAnswer.name;
+var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
+
+  flagTitleAnswer = flags[Math.floor(Math.random() * flags.length)]; // CHOISIE UN PAYS AU HASARD PARMIS LA LISTE
+  flagTitle.innerHTML = flagTitleAnswer.name;
 
 
-  for (var i = 0; i < answers.length; i++) {
-    var drapo = flags[Math.floor(Math.random() * flags.length + 1)];
+  for (var i = 0; i < answers.length; i++) {  // CHOISIE DES DRAPEAUX DANS LE DATA
+    var drapo = flags[Math.floor(Math.random() * flags.length )];
     do {
-      var drapo = flags[Math.floor(Math.random() * flags.length + 1)];
+      var drapo = flags[Math.floor(Math.random() * flags.length)];
     } while (drapo.name === flagTitleAnswer.name);
-    answers[i].src = "flags/" + drapo.code + ".svg";
+    answers[i].src = "flags/" + drapo.code + ".svg"; // CHANGE SRC DES DRAPEAUX
 
   }
 
 
-  var correctAnswer = [Math.floor(Math.random() * 4)];
-  answers[correctAnswer].src = "flags/" + flagTitleAnswer.code + ".svg";
+  var correctAnswer = [Math.floor(Math.random() * 4)];   // AJOUTE LA BONNE RéPONSE CORRESPONDANT AU TITRE flagTitleAnswer DANS LES 4 DRAPEAUX
+  answers[correctAnswer].src = "flags/" + flagTitleAnswer.code + ".svg"; // CHANGE LA SRC DE LA BONNE REPONSE
 }
 
-var Gameeeeee = function() {
-    for (var i = 0; i < answers.length; i++) {
-      answers[i].addEventListener('click', function() {
-        var correctAnswerVerify = this.src;
-        console.log(correctAnswerVerify);
-        if (correctAnswerVerify === flagTitleAnswer.code) {
-          initilizeGame();
-
+var Gameeeeee = function() {  // FONCTION POUR LANCER LE JEU
+  for (var i = 0; i < answers.length; i++) {
+    answers[i].addEventListener('click', function() {   // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
+      console.log(this.src[51] + this.src[52]);
+      console.log(flagTitleAnswer.code);
+      var correctAnswerVerify = this.src[51] + this.src[52];
+      if (correctAnswerVerify == flagTitleAnswer.code) {
+        timer = timer + 4; // AJOUE DU TEMPS SI IL Y A CORRESPONDANCE
+        if (timer > 20) { // SI TEMPS > A 20 ALORS ON RESTE A 20
+          timer = 21;
         }
-      })
-    }
+        textTimer = timer; // ON CHANGE LE TEXT DE LA DIV POUR METTRE LA VALEUR DU TIMER
+        initilizeGame(); // ON RE INITIALISE LES DRAPEAUX ALEATOIREMENT
+
+
+      }
+    })
   }
 
-    functionStart();
+}
+
+functionStart(); // LANCE TOUT BEBE
