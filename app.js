@@ -110,6 +110,7 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
 
       } else if (correctAnswerVerify !== flagTitleAnswer.code) {
         removeslife();
+
       }
     })
   }
