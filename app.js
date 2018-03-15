@@ -3,32 +3,56 @@ var startBtn = startScreen.querySelector('button');
 var mainScreen = document.querySelector('#game');
 var gameOver = document.querySelector('#game-over');
 var restartBtn = gameOver.querySelector('button');
+
+
 var flagTitle = document.querySelector('.flagTitle');
-var answers = document.querySelectorAll('.flag img');
-var lifes = document.querySelectorAll('.lives img');
-var addscore = document.querySelector('.score');
-var timer = 20;
 var flagTitleAnswer;
+var answers = document.querySelectorAll('.flag img');
+
+var addscore = document.querySelector('.score');
 var textScore = document.querySelector('.score strong');
 var score = 0;
 
-var addscore = function() {
-  score++;
-  textScore.innerHTML = score;
+var timer = 20;
+
+var lifesCounter = 3;
+var lifes = document.querySelectorAll('.lives img');
+
+var removeslife = function() {  // FONCTION DE LA PERTE DE VIE
+  lifesCounter--;
+  lifes[lifesCounter].classList.add('is-active');  // AJOUT DE LA CLASS IS-ACTIVE
+  if (lifesCounter === 0) { // SI LE NOMBRE DE VIE = 0
+    gameOver.style.display = 'flex'; // AFFICHAGE DE L'ECRAN GAME OVER
+    for (var i = 0; i < lifes.length; i++) { // ON ENLEVE LA CLASS IS-ACTIVE A TOUTE LES IMGS (BOUCLE PSK TABLEAU)
+      lifes[i].classList.toggle('is-active');
+    }
+
+
+  }
+}
+
+
+
+
+
+
+var addscore = function() {  // FONCTION D'AJOUT DU SCORE
+  score++; //INCREMENTATION DU SCORE
+  textScore.innerHTML = score; // AFFICHAGE DU SCORE
 
 }
 
-var functionTime = function() {
+var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
   var interval = setInterval(function() {
     var textTimer = mainScreen.querySelector('.time');
-    timer--;
-    textTimer.innerHTML = timer + 's';
-    if (timer === 0) {
-      clearInterval(interval);
-      gameOver.style.display = 'block';
+    timer--; // DECREMENTATION DU TEMPS
+    textTimer.innerHTML = timer + 's'; // AFFICHAGE DU TEMPS
+    if (timer === 0) { // SI TEMPS = 0
+      clearInterval(interval); // CLEAR DE L'INTERVAL
+      gameOver.style.display = 'flex'; // AFFICHAGE DE L'ECRAN GAME OVER
     };
   }, 1000);
-} // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
+}
 
 
 var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'ECHEC
@@ -41,6 +65,7 @@ var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'E
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
+    timer = 20;
     functionTime();
     initilizeGame();
     functionRestart();
@@ -49,6 +74,8 @@ var functionStart = function() { // FONCITON QUI LANCE LE JEU
 }
 
 var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
+
+
 
   flagTitleAnswer = flags[Math.floor(Math.random() * flags.length)]; // CHOISIE UN PAYS AU HASARD PARMIS LA LISTE
   flagTitle.innerHTML = flagTitleAnswer.name;
@@ -71,10 +98,8 @@ var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
 var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
     answers[i].addEventListener('click', function() { // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
-      console.log(this.src[51] + this.src[52]);
-      console.log(flagTitleAnswer.code);
       var correctAnswerVerify = this.src[51] + this.src[52];
-      if (correctAnswerVerify == flagTitleAnswer.code) {
+      if (correctAnswerVerify === flagTitleAnswer.code) {
         timer = timer + 4; // AJOUE DU TEMPS SI IL Y A CORRESPONDANCE
         if (timer > 20) { // SI TEMPS > A 20 ALORS ON RESTE A 20
           timer = 21;
@@ -83,6 +108,8 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
         initilizeGame(); // ON RE INITIALISE LES DRAPEAUX ALEATOIREMENT
         addscore();
 
+      } else if (correctAnswerVerify !== flagTitleAnswer.code) {
+        removeslife();
       }
     })
   }
