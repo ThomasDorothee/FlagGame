@@ -4,12 +4,19 @@ var mainScreen = document.querySelector('#game');
 var gameOver = document.querySelector('#game-over');
 var restartBtn = gameOver.querySelector('button');
 var flagTitle = document.querySelector('.flagTitle');
-var flagTitleAnswer = {};
 var answers = document.querySelectorAll('.flag img');
 var lifes = document.querySelectorAll('.lives img');
 var addscore = document.querySelector('.score');
 var timer = 20;
+var flagTitleAnswer;
+var textScore = document.querySelector('.score strong');
+var score = 0;
 
+var addscore = function() {
+  score++;
+  textScore.innerHTML = score;
+
+}
 
 var functionTime = function() {
   var interval = setInterval(function() {
@@ -21,17 +28,17 @@ var functionTime = function() {
       gameOver.style.display = 'block';
     };
   }, 1000);
-}  // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
+} // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
 
 
-var functionRestart = function() {             // FONCTION POUR RESTART LA PARTIE EN CAS D'ECHEC
+var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'ECHEC
   restartBtn.addEventListener('click', function() {
     gameOver.style.display = '';
     startScreen.style.display = 'flex';
   })
 }
 
-var functionStart = function() {            // FONCITON QUI LANCE LE JEU
+var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
     functionTime();
@@ -47,8 +54,8 @@ var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
   flagTitle.innerHTML = flagTitleAnswer.name;
 
 
-  for (var i = 0; i < answers.length; i++) {  // CHOISIE DES DRAPEAUX DANS LE DATA
-    var drapo = flags[Math.floor(Math.random() * flags.length )];
+  for (var i = 0; i < answers.length; i++) { // CHOISIE DES DRAPEAUX DANS LE DATA
+    var drapo = flags[Math.floor(Math.random() * flags.length)];
     do {
       var drapo = flags[Math.floor(Math.random() * flags.length)];
     } while (drapo.name === flagTitleAnswer.name);
@@ -57,13 +64,13 @@ var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
   }
 
 
-  var correctAnswer = [Math.floor(Math.random() * 4)];   // AJOUTE LA BONNE RéPONSE CORRESPONDANT AU TITRE flagTitleAnswer DANS LES 4 DRAPEAUX
+  var correctAnswer = [Math.floor(Math.random() * 4)]; // AJOUTE LA BONNE RéPONSE CORRESPONDANT AU TITRE flagTitleAnswer DANS LES 4 DRAPEAUX
   answers[correctAnswer].src = "flags/" + flagTitleAnswer.code + ".svg"; // CHANGE LA SRC DE LA BONNE REPONSE
 }
 
-var Gameeeeee = function() {  // FONCTION POUR LANCER LE JEU
+var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
-    answers[i].addEventListener('click', function() {   // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
+    answers[i].addEventListener('click', function() { // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
       console.log(this.src[51] + this.src[52]);
       console.log(flagTitleAnswer.code);
       var correctAnswerVerify = this.src[51] + this.src[52];
@@ -74,7 +81,7 @@ var Gameeeeee = function() {  // FONCTION POUR LANCER LE JEU
         }
         textTimer = timer; // ON CHANGE LE TEXT DE LA DIV POUR METTRE LA VALEUR DU TIMER
         initilizeGame(); // ON RE INITIALISE LES DRAPEAUX ALEATOIREMENT
-
+        addscore();
 
       }
     })
