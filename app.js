@@ -13,7 +13,7 @@ var answers = document.querySelectorAll('.flag img');
 var textScore = document.querySelector('.score strong');
 var score = 0;
 
-var timer = 21;
+var timer = 20;
 
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
@@ -23,9 +23,9 @@ var functionStart = function() { // FONCITON QUI LANCE LE JEU
     startScreen.style.display = 'none';
 
     functionRestart();
-    functionTime();
     initilizeGame();
     Gameeeeee();
+    functionTime();
   });
 }
 
@@ -43,9 +43,11 @@ var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICH
 var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'ECHEC
   restartBtn.addEventListener('click', function() {
     gameOver.style.display = '';
-    timer = 20;
+    var flagTitleAnswer;
+    timer = 21;
     lifesCounter = 3;
     score = 0;
+    textTimer.innerHTML = timer;
     textScore.innerHTML = score;
   })
 }
@@ -117,7 +119,6 @@ var addscore = function() { // FONCTION D'AJOUT DU SCORE
     mainScreen.style.display = 'none';
     winScreen.classList.remove('AMIMI');
     winScreen.classList.add('AMOMO');
-    
 
   }
 
