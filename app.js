@@ -9,37 +9,23 @@ var flagTitle = document.querySelector('.flagTitle');
 var flagTitleAnswer;
 var answers = document.querySelectorAll('.flag img');
 
-var addscore = document.querySelector('.score');
 var textScore = document.querySelector('.score strong');
 var score = 0;
 
-var timer = 20;
+var timer = 21;
 
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
 
-var removeslife = function() {  // FONCTION DE LA PERTE DE VIE
-  lifesCounter--;
-  lifes[lifesCounter].classList.add('is-active');  // AJOUT DE LA CLASS IS-ACTIVE
-  if (lifesCounter === 0) { // SI LE NOMBRE DE VIE = 0
-    gameOver.style.display = 'flex'; // AFFICHAGE DE L'ECRAN GAME OVER
-    for (var i = 0; i < lifes.length; i++) { // ON ENLEVE LA CLASS IS-ACTIVE A TOUTE LES IMGS (BOUCLE PSK TABLEAU)
-      lifes[i].classList.toggle('is-active');
-    }
+var functionStart = function() { // FONCITON QUI LANCE LE JEU
+  startBtn.addEventListener('click', function() {
+    startScreen.style.display = 'none';
 
-
-  }
-}
-
-
-
-
-
-
-var addscore = function() {  // FONCTION D'AJOUT DU SCORE
-  score++; //INCREMENTATION DU SCORE
-  textScore.innerHTML = score; // AFFICHAGE DU SCORE
-
+    functionRestart();
+    functionTime();
+    initilizeGame();
+    Gameeeeee();
+  });
 }
 
 var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
@@ -53,28 +39,17 @@ var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICH
     };
   }, 1000);
 }
-
-
 var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'ECHEC
   restartBtn.addEventListener('click', function() {
     gameOver.style.display = '';
-    startScreen.style.display = 'flex';
+    timer = 20;
+    lifesCounter = 3;
+    score = 0;
+    textScore.innerHTML = score;
   })
 }
 
-var functionStart = function() { // FONCITON QUI LANCE LE JEU
-  startBtn.addEventListener('click', function() {
-    startScreen.style.display = 'none';
-    timer = 20;
-    functionTime();
-    initilizeGame();
-    functionRestart();
-    Gameeeeee();
-  });
-}
-
 var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
-
 
 
   flagTitleAnswer = flags[Math.floor(Math.random() * flags.length)]; // CHOISIE UN PAYS AU HASARD PARMIS LA LISTE
@@ -116,4 +91,29 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
 
 }
 
-functionStart(); // LANCE TOUT BEBE
+var removeslife = function() { // FONCTION DE LA PERTE DE VIE
+  lifesCounter--;
+  lifes[lifesCounter].classList.toggle('is-active'); // AJOUT DE LA CLASS IS-ACTIVE
+  if (lifesCounter === 0) { // SI LE NOMBRE DE VIE = 0
+
+    gameOver.style.display = 'flex'; // AFFICHAGE DE L'ECRAN GAME OVER
+    for (var i = 0; i < lifes.length; i++) { // ON ENLEVE LA CLASS IS-ACTIVE A TOUTE LES IMGS (BOUCLE PSK TABLEAU)
+      lifes[i].classList.remove('is-active');
+    }
+
+  }
+}
+
+
+
+
+
+
+var addscore = function() { // FONCTION D'AJOUT DU SCORE
+  score++; //INCREMENTATION DU SCORE
+  textScore.innerHTML = score; // AFFICHAGE DU SCORE
+
+
+}
+
+window.onload = functionStart(); // LANCE TOUT BEBE
