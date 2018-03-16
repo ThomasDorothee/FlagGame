@@ -3,6 +3,7 @@ var startBtn = startScreen.querySelector('button');
 var mainScreen = document.querySelector('#game');
 var gameOver = document.querySelector('#game-over');
 var restartBtn = gameOver.querySelector('button');
+var winScreen = document.querySelector('.AMIMI');
 
 
 var flagTitle = document.querySelector('.flagTitle');
@@ -113,7 +114,13 @@ var removeslife = function() { // FONCTION DE LA PERTE DE VIE
 var addscore = function() { // FONCTION D'AJOUT DU SCORE
   score++; //INCREMENTATION DU SCORE
   textScore.innerHTML = score; // AFFICHAGE DU SCORE
+  if (score === 10) {
+    mainScreen.style.display = 'none';
+    winScreen.classList.remove('AMIMI');
+    winScreen.classList.add('AMOMO');
+    
 
+  }
 
 }
 
