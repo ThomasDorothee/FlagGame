@@ -141,3 +141,12 @@ h2 {
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+.AMIMI{
+  display: none;
+}
+
+
+.AMOMO{
+  height: 100vh;
+  width: 100vw;
+}
