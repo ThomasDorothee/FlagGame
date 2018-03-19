@@ -12,6 +12,9 @@ var score = 0;
 var timer = 20;
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
+var textTimer = mainScreen.querySelector('.time');
+var correctAnswer = [Math.floor(Math.random() * 4)];
+
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
@@ -70,6 +73,8 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
     answers[i].addEventListener('click', function() { // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
       var correctAnswerVerify = this.src[51] + this.src[52];
+      console.log(flagTitleAnswer.code);
+      console.log(answers[correctAnswer].src);
       if (correctAnswerVerify === flagTitleAnswer.code) {
         timer = timer + 4; // AJOUE DU TEMPS SI IL Y A CORRESPONDANCE
         if (timer > 20) { // SI TEMPS > A 20 ALORS ON RESTE A 20
