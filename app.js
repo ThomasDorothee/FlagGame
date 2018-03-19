@@ -21,11 +21,10 @@ var lifes = document.querySelectorAll('.lives img');
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
-
+    functionTime();
     functionRestart();
     initilizeGame();
     Gameeeeee();
-    functionTime();
   });
 }
 
