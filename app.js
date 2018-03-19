@@ -12,6 +12,9 @@ var score = 0;
 var timer = 20;
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
+var textTimer = mainScreen.querySelector('.time');
+var correctAnswer = [Math.floor(Math.random() * 4)];
+
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
