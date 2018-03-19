@@ -4,20 +4,14 @@ var mainScreen = document.querySelector('#game');
 var gameOver = document.querySelector('#game-over');
 var restartBtn = gameOver.querySelector('button');
 var winScreen = document.querySelector('.AMIMI');
-
-
 var flagTitle = document.querySelector('.flagTitle');
 var flagTitleAnswer;
 var answers = document.querySelectorAll('.flag img');
-
 var textScore = document.querySelector('.score strong');
 var score = 0;
-
 var timer = 20;
-
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
-
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
@@ -27,6 +21,7 @@ var functionStart = function() { // FONCITON QUI LANCE LE JEU
     Gameeeeee();
   });
 }
+
 
 var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
   var interval = setInterval(function() {
@@ -51,7 +46,6 @@ var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'E
     winScreen.classList.remove('AMOMO');
   })
 }
-
 var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
 
 
@@ -72,7 +66,6 @@ var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
   var correctAnswer = [Math.floor(Math.random() * 4)]; // AJOUTE LA BONNE RéPONSE CORRESPONDANT AU TITRE flagTitleAnswer DANS LES 4 DRAPEAUX
   answers[correctAnswer].src = "flags/" + flagTitleAnswer.code + ".svg"; // CHANGE LA SRC DE LA BONNE REPONSE
 }
-
 var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
     answers[i].addEventListener('click', function() { // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
@@ -94,7 +87,6 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   }
 
 }
-
 var removeslife = function() { // FONCTION DE LA PERTE DE VIE
   lifesCounter--;
   lifes[lifesCounter].classList.toggle('is-active'); // AJOUT DE LA CLASS IS-ACTIVE
@@ -107,12 +99,6 @@ var removeslife = function() { // FONCTION DE LA PERTE DE VIE
 
   }
 }
-
-
-
-
-
-
 var addscore = function() { // FONCTION D'AJOUT DU SCORE
   score++; //INCREMENTATION DU SCORE
   textScore.innerHTML = score; // AFFICHAGE DU SCORE
@@ -124,5 +110,4 @@ var addscore = function() { // FONCTION D'AJOUT DU SCORE
   }
 
 }
-
 window.onload = functionStart(); // LANCE TOUT BEBE
