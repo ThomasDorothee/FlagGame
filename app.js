@@ -49,6 +49,7 @@ var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'E
     score = 0;
     textTimer.innerHTML = timer;
     textScore.innerHTML = score;
+    winScreen.classList.remove('AMOMO');
   })
 }
 
