@@ -71,10 +71,10 @@ var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
 }
 var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
-    answers[i].addEventListener('click', function() { // VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
-      var correctAnswerVerify = this.src[51] + this.src[52];
-      console.log(flagTitleAnswer.code);
-      console.log(answers[correctAnswer].src);
+    answers[i].addEventListener('click', function() {
+      console.log(flagTitleAnswer.code);// VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
+      var correctAnswerVerify = this.src[46] + this.src[47];
+      console.log(this.length);
       if (correctAnswerVerify === flagTitleAnswer.code) {
         timer = timer + 4; // AJOUE DU TEMPS SI IL Y A CORRESPONDANCE
         if (timer > 20) { // SI TEMPS > A 20 ALORS ON RESTE A 20
