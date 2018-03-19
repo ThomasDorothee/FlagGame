@@ -12,6 +12,9 @@ var score = 0;
 var timer = 20;
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
+var textTimer = mainScreen.querySelector('.time');
+
+
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
     startScreen.style.display = 'none';
@@ -21,8 +24,6 @@ var functionStart = function() { // FONCITON QUI LANCE LE JEU
     Gameeeeee();
   });
 }
-
-
 var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
   var interval = setInterval(function() {
     var textTimer = mainScreen.querySelector('.time');
@@ -70,7 +71,8 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
     answers[i].addEventListener('click', function() {
       console.log(flagTitleAnswer.code);// VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
-      var correctAnswerVerify = this.src[46] + this.src[47];
+
+      var correctAnswerVerify = this.src[44] + this.src[45];
       console.log(this.length);
       if (correctAnswerVerify === flagTitleAnswer.code) {
         timer = timer + 4; // AJOUE DU TEMPS SI IL Y A CORRESPONDANCE
