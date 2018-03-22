@@ -114,4 +114,4 @@ var addscore = function() { // FONCTION D'AJOUT DU SCORE
   }
 
 }
-window.onload = functionStart(); // LANCE TOUT BEBE
+functionStart(); // LANCE TOUT BEBE
