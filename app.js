@@ -41,12 +41,13 @@ var functionRestart = function() { // FONCTION POUR RESTART LA PARTIE EN CAS D'E
   restartBtn.addEventListener('click', function() {
     gameOver.style.display = '';
     var flagTitleAnswer;
-    timer = 21;
+    timer = 20;
     lifesCounter = 3;
     score = 0;
     textTimer.innerHTML = timer;
     textScore.innerHTML = score;
     winScreen.classList.remove('AMOMO');
+    functionStart();
   })
 }
 var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
@@ -78,7 +79,7 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
         if (timer > 20) { // SI TEMPS > A 20 ALORS ON RESTE A 20
           timer = 21;
         }
-        textTimer = timer; // ON CHANGE LE TEXT DE LA DIV POUR METTRE LA VALEUR DU TIMER
+        textTimer = timer + 's'; // ON CHANGE LE TEXT DE LA DIV POUR METTRE LA VALEUR DU TIMER
         initilizeGame(); // ON RE INITIALISE LES DRAPEAUX ALEATOIREMENT
         addscore();
 
