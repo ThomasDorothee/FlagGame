@@ -13,7 +13,7 @@ var timer = 20;
 var lifesCounter = 3;
 var lifes = document.querySelectorAll('.lives img');
 var textTimer = mainScreen.querySelector('.time');
-var correctAnswer = [Math.floor(Math.random() * 4)];
+var correctAnswer;
 
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
   startBtn.addEventListener('click', function() {
@@ -66,16 +66,14 @@ var initilizeGame = function() { // INITIALISATION DES DRAPEAUX
   }
 
 
-  var correctAnswer = [Math.floor(Math.random() * 4)]; // AJOUTE LA BONNE RéPONSE CORRESPONDANT AU TITRE flagTitleAnswer DANS LES 4 DRAPEAUX
+  correctAnswer = [Math.floor(Math.random() * 4)]; // AJOUTE LA BONNE RéPONSE CORRESPONDANT AU TITRE flagTitleAnswer DANS LES 4 DRAPEAUX
   answers[correctAnswer].src = "flags/" + flagTitleAnswer.code + ".svg"; // CHANGE LA SRC DE LA BONNE REPONSE
 }
 var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
   for (var i = 0; i < answers.length; i++) {
-    answers[i].addEventListener('click', function() {
-      console.log(flagTitleAnswer.code);// VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
-      var correctAnswerVerify = this.src[46] + this.src[47];
-      console.log(this.length);
-      if (correctAnswerVerify === flagTitleAnswer.code) {
+    answers[i].addEventListener('click', function() {;// VERIFICATION AU CLIC SI LA SRC CORRESPOND AU .CODE DU DATA
+      var correctAnswerVerify = this.src;
+      if (correctAnswerVerify === answers[correctAnswer].src) {
         timer = timer + 4; // AJOUE DU TEMPS SI IL Y A CORRESPONDANCE
         if (timer > 20) { // SI TEMPS > A 20 ALORS ON RESTE A 20
           timer = 21;
@@ -84,7 +82,7 @@ var Gameeeeee = function() { // FONCTION POUR LANCER LE JEU
         initilizeGame(); // ON RE INITIALISE LES DRAPEAUX ALEATOIREMENT
         addscore();
 
-      } else if (correctAnswerVerify !== flagTitleAnswer.code) {
+      } else if (correctAnswerVerify !== answers[correctAnswer].src) {
         removeslife();
 
       }
