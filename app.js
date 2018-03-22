@@ -5,14 +5,14 @@ var gameOver = document.querySelector('#game-over');
 var restartBtn = gameOver.querySelector('button');
 var winScreen = document.querySelector('.AMIMI');
 var flagTitle = document.querySelector('.flagTitle');
-var flagTitleAnswer;
+var lifes = document.querySelectorAll('.lives img');
+var textTimer = mainScreen.querySelector('.time');
 var answers = document.querySelectorAll('.flag img');
 var textScore = document.querySelector('.score strong');
 var score = 0;
-var timer = 20;
 var lifesCounter = 3;
-var lifes = document.querySelectorAll('.lives img');
-var textTimer = mainScreen.querySelector('.time');
+var timer = 20;
+var flagTitleAnswer;
 var correctAnswer;
 
 var functionStart = function() { // FONCITON QUI LANCE LE JEU
@@ -24,8 +24,6 @@ var functionStart = function() { // FONCITON QUI LANCE LE JEU
     Gameeeeee();
   });
 }
-
-
 var functionTime = function() { // DEFINITION DE LA FONCTION QUI PERMET D'AFFICHER LE TIMER
   var interval = setInterval(function() {
     var textTimer = mainScreen.querySelector('.time');
